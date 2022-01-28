@@ -32,7 +32,7 @@ public class XmlSerializer<T> {
             field.setAccessible(true);
             if (field.isAnnotationPresent(XmlElement.class)) {
                 String value = field.getAnnotation(XmlElement.class).key();
-                serializeOutput.append(String.format("  <%s>%s<%1$s/>%n", value.isEmpty() ? field.getName() : value,
+                serializeOutput.append(String.format("<%s>%s<%1$s/>%n", value.isEmpty() ? field.getName() : value,
                         field.get(object)));
             }
         }

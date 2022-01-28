@@ -21,14 +21,14 @@ public class XmlSerializerTest {
         Assertions.assertEquals(stringList,
                 List.of(
                         "<Person>\n" +
-                                "  <firstName>Ivan<firstName/>\n" +
-                                "  <lastName>Ivanov<lastName/>\n" +
-                                "  <address>London<address/>\n" +
+                                "<firstName>Ivan<firstName/>\n" +
+                                "<lastName>Ivanov<lastName/>\n" +
+                                "<address>London<address/>\n" +
                                 "<Person/>",
                         "<Person>\n" +
-                                "  <firstName>Oleg<firstName/>\n" +
-                                "  <lastName>Kostolom<lastName/>\n" +
-                                "  <address>Vienna<address/>\n" +
+                                "<firstName>Oleg<firstName/>\n" +
+                                "<lastName>Kostolom<lastName/>\n" +
+                                "<address>Vienna<address/>\n" +
                                 "<Person/>")
         );
     }

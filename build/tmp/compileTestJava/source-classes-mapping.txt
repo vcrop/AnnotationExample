@@ -1,4 +1,4 @@
-org/example/XmlSerializerTest.java
- org.example.XmlSerializerTest
 org/example/Person.java
  org.example.Person
+org/example/XmlSerializerTest.java
+ org.example.XmlSerializerTest
