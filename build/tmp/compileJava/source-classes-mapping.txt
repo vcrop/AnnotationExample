@@ -1,0 +1,8 @@
+org/example/exceptions/XmlSerializableException.java
+ org.example.exceptions.XmlSerializableException
+org/example/annotations/XmlSerializable.java
+ org.example.annotations.XmlSerializable
+org/example/annotations/XmlElement.java
+ org.example.annotations.XmlElement
+org/example/serializers/XmlSerializer.java
+ org.example.serializers.XmlSerializer
