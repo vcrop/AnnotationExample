@@ -33,7 +33,10 @@ public class XmlSerializer<T> {
                 String value = field.getAnnotation(XmlElement.class).key();
                 value = value.isEmpty() ? field.getName() : value;
                 fieldTags.add(
-                        Tag.fieldTag(value, Optional.ofNullable(field.get(object)).map(Object::toString).orElse("null"))
+                        Tag.fieldTag(value,
+                                Optional.ofNullable(field.get(object))
+                                        .map(Object::toString)
+                                        .orElse("null"))
                 );
             }
         }
