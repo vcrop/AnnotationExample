@@ -2,16 +2,24 @@ package org.example.tags;
 
 import org.example.types.Type;
 
-public class Tag<T extends Type> {
+public class Tag{
 
-    T type;
+    Type type;
     String tagName;
     String body;
 
-    public Tag(String tagName, String body, T type) {
+    public Tag(String tagName, String body, Type type) {
         this.tagName = tagName;
         this.body = body;
         this.type = type;
+    }
+
+    public static Tag rootTag(String tagName, String body) {
+        return new Tag(tagName, body, new Type.RootType(){});
+    }
+
+    public static Tag fieldTag(String tagName, String body) {
+        return new Tag(tagName, body, new Type.FieldType(){});
     }
 
     public String toString() {
