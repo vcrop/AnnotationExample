@@ -4,5 +4,17 @@ org/example/annotations/XmlSerializable.java
  org.example.annotations.XmlSerializable
 org/example/annotations/XmlElement.java
  org.example.annotations.XmlElement
+org/example/tags/RootTag.java
+ org.example.tags.RootTag
+ org.example.tags.RootTag$1
+org/example/types/Type.java
+ org.example.types.Type
+ org.example.types.Type$FieldType
+ org.example.types.Type$RootType
+org/example/tags/FieldTag.java
+ org.example.tags.FieldTag
+ org.example.tags.FieldTag$1
+org/example/tags/Tag.java
+ org.example.tags.Tag
 org/example/serializers/XmlSerializer.java
  org.example.serializers.XmlSerializer

@@ -2,11 +2,17 @@ package org.example.serializers;
 
 import org.example.annotations.XmlElement;
 import org.example.annotations.XmlSerializable;
+import org.example.tags.FieldTag;
+import org.example.tags.RootTag;
+import org.example.tags.Tag;
 import org.example.exceptions.XmlSerializableException;
+import org.example.types.Type;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class XmlSerializer<T> {
 
@@ -22,24 +28,23 @@ public class XmlSerializer<T> {
                     String.format("The class with name %s is not annotated with @XmlSerializable", object.getClass())
             );
 
-        StringBuilder serializeOutput = new StringBuilder();
-
-        String root = object.getClass().getAnnotation(XmlSerializable.class).key();
-
-        serializeOutput.append(String.format("<%s>%n", root.isEmpty() ? object.getClass().getSimpleName() : root));
+        List<Tag<Type.FieldType>> fieldTags = new ArrayList<>();
 
         for (Field field: object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             if (field.isAnnotationPresent(XmlElement.class)) {
                 String value = field.getAnnotation(XmlElement.class).key();
-                serializeOutput.append(String.format("<%s>%s<%1$s/>%n", value.isEmpty() ? field.getName() : value,
-                        field.get(object)));
+                value = value.isEmpty() ? field.getName() : value;
+                fieldTags.add(
+                        new FieldTag(value, Optional.ofNullable(field.get(object)).map(Object::toString).orElse("null"))
+                );
             }
         }
 
-        serializeOutput.append(String.format("<%s/>", root.isEmpty() ? object.getClass().getSimpleName() : root));
+        String root = object.getClass().getAnnotation(XmlSerializable.class).key();
+        root = root.isEmpty() ? object.getClass().getSimpleName() : root;
 
-        return serializeOutput.toString();
+        return new RootTag(root, fieldTags.stream().map(Object::toString).collect(Collectors.joining("\n"))).toString();
     }
 
 }
