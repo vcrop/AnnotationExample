@@ -26,7 +26,7 @@ public class XmlSerializer<T> {
 
         String root = object.getClass().getAnnotation(XmlSerializable.class).key();
 
-        serializeOutput.append(String.format("<%s>%n", root.isEmpty() ? object.getClass().getName() : root));
+        serializeOutput.append(String.format("<%s>%n", root.isEmpty() ? object.getClass().getSimpleName() : root));
 
         for (Field field: object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
@@ -37,7 +37,7 @@ public class XmlSerializer<T> {
             }
         }
 
-        serializeOutput.append(String.format("<%s/>", root.isEmpty() ? object.getClass().getName() : root));
+        serializeOutput.append(String.format("<%s/>", root.isEmpty() ? object.getClass().getSimpleName() : root));
 
         return serializeOutput.toString();
     }
